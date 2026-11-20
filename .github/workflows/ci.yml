@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: LifeNode logic tests (C++17)
+        run: make -C firmware test
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install backend dependencies
+        working-directory: backend
+        run: npm install --no-audit --no-fund
+      - name: Backend tests
+        working-directory: backend
+        run: npm test
+      - name: Run the pilot drill and write dashboard data
+        working-directory: backend
+        run: npm run drill -- --seed 7 --sessions 12
+      - name: Dashboard screenshot
+        run: |
+          google-chrome --headless=new --no-sandbox --disable-gpu --hide-scrollbars \
+            --window-size=1300,900 --virtual-time-budget=3000 \
+            --screenshot="$GITHUB_WORKSPACE/docs/dashboard.png" "file://$GITHUB_WORKSPACE/dashboard/index.html"
+      - name: Commit regenerated outputs
+        if: github.event_name == 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dashboard/data.js docs/dashboard.png
+          git diff --cached --quiet || { git commit -m "Regenerate drill data and dashboard screenshot"; git push; }

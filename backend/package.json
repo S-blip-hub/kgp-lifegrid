@@ -1,0 +1,20 @@
+{
+  "name": "kgp-lifegrid-backend",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Alert frames, responder routing, closed-loop case lifecycle and drill simulation for KGP LifeGrid",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test \"dist/test/*.test.js\"",
+    "drill": "npm run build && node dist/src/simulate.js"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}

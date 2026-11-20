@@ -1,0 +1,20 @@
+{
+  "description": "Illustrative Safe Hall + Safe Corridor pilot layout used for routing simulations. Positions are metres on a local grid; names are placeholders, not real staff.",
+  "nodes": [
+    { "id": "H1-N1", "label": "Hall entrance", "zone": "hall", "highRisk": false, "x": 0, "y": 0 },
+    { "id": "H1-N2", "label": "Hall common-room corridor", "zone": "hall", "highRisk": false, "x": 45, "y": 30 },
+    { "id": "H1-N3", "label": "Hall terrace access", "zone": "hall", "highRisk": true, "x": 70, "y": 60 },
+    { "id": "CR-N4", "label": "Corridor midpoint (poorly lit)", "zone": "corridor", "highRisk": true, "x": 420, "y": -40 },
+    { "id": "CR-N5", "label": "Corridor junction near academic area", "zone": "corridor", "highRisk": false, "x": 820, "y": -90 }
+  ],
+  "responders": [
+    { "id": "CTRL", "role": "control_room", "name": "Security control room", "x": 600, "y": -300, "speed": 0, "available": true },
+    { "id": "PT-1", "role": "patrol", "name": "Patrol 1 (bike)", "x": 250, "y": -120, "speed": 5.0, "available": true },
+    { "id": "PT-2", "role": "patrol", "name": "Patrol 2 (bike)", "x": 900, "y": 150, "speed": 5.0, "available": true },
+    { "id": "GD-H1", "role": "patrol", "name": "Hall gate guard", "x": -10, "y": -5, "speed": 1.4, "available": true },
+    { "id": "WD-H1", "role": "warden", "name": "Hall warden on duty", "x": 30, "y": -20, "speed": 1.3, "available": true },
+    { "id": "MED", "role": "medical_desk", "name": "Medical emergency desk", "x": 1500, "y": 400, "speed": 8.0, "available": true },
+    { "id": "CNS", "role": "counselling", "name": "Counselling on call", "x": 1200, "y": 300, "speed": 6.0, "available": true },
+    { "id": "ADM", "role": "admin", "name": "Authorised admin escalation", "x": 1300, "y": -500, "speed": 0, "available": true }
+  ]
+}

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KGP LifeGrid · Command Dashboard (drill mock-up)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="banner">Mock-up driven by the drill simulation in <code>backend/</code>. No live data, no real students or staff.</div>
+  <header>
+    <h1>KGP LifeGrid <span>Command Dashboard</span></h1>
+    <p id="subtitle"></p>
+  </header>
+
+  <main>
+    <section class="cards" id="cards"></section>
+
+    <section class="grid">
+      <div class="panel">
+        <h2>Acknowledgement time</h2>
+        <p class="hint">Seconds from alert to a responder accepting the case. Pilot aim: under 60 s.</p>
+        <div id="ack-hist" class="hist"></div>
+      </div>
+      <div class="panel">
+        <h2>Cases by category</h2>
+        <p class="hint">Anonymised counts, as shown to admin.</p>
+        <ul id="by-cat" class="bars"></ul>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="table-head">
+        <h2>Case log</h2>
+        <select id="filter" aria-label="Filter by category">
+          <option value="">All categories</option>
+        </select>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Case</th><th>LifeNode</th><th>Category</th><th>P</th><th>Ack (s)</th><th>Reached (s)</th><th>Follow-up</th><th>Outcome</th><th>Status</th></tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </section>
+
+    <aside id="detail" class="detail" hidden>
+      <button id="close" aria-label="Close">×</button>
+      <h3 id="detail-title"></h3>
+      <ol id="timeline"></ol>
+    </aside>
+  </main>
+
+  <footer>KGP LifeGrid · Shrey Singh · Control-room view: crisis care notes are never shown here.</footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
